@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Films selector</title>
+    <style type="text/css">
+        #films {
+            width: 250px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+
+<form id="filmForm" action="/people/counts-by-films">
+    <select multiple id="films" name="films">
+        <option value="">-- Select --</option>
+    </select>
+    <button type="submit">submit</button>
+</form>
+
+</body>
+
+<script>
+    window.onload = populateSelect();
+
+    function populateSelect() {
+
+        var xhr = new XMLHttpRequest(),
+            method = 'GET',
+            overrideMimeType = 'application/json',
+            url = 'http://localhost:8080/film';
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+                // PARSE JSON DATA.
+                var films = JSON.parse(xhr.responseText);
+
+                var ele = document.getElementById('films');
+                for (var i = 0; i < films.length; i++) {
+                    ele.innerHTML = ele.innerHTML +
+                        '<option value="' + films[i].id + '">' + films[i].title + '</option>';
+                }
+            }
+        };
+        xhr.open(method, url, true);
+        xhr.send();
+    }
+</script>
+</html>

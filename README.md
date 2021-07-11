@@ -1,7 +1,7 @@
-# Import and sort orders from CSV files into REST API
+# Import from Starwars API to new database and query the persisted data
 
-Development of an API based on REST orders with Spring Boot from imported CSV files.
-These files can be processed and filtered and later downloaded through it.
+Development of an API based on REST with Spring Boot from imported data of Starwars API REST https://swapi.dev/.
+The imported data that can be consulted are movies, people and starships. You can also do a couple of complex queries mixing all data.
 
 # Tools and frameworks
 
@@ -54,7 +54,7 @@ java -jar build/libs/swapidb-0.0.1-SNAPSHOT.jar
 # Nice-To-Have
 Here are some improvements that could be made in the future:
 * Improve the data load from https://swapi.dev/ asynchronously.
-* Fix Many to Many relation ships to avoid doing extra code in people queries. I had a mistake with the value of the @JsonProperty annotation and had to implement additional code that is not necessary.
+* Fix @ManyToMany relationships to avoid doing extra code in people queries. I had a mistake with the value of the @JsonProperty annotation and had to implement additional code that is not necessary.
 * Fix second query adding starships. At this moment people appear who do not drive any starship.   
 * Improve exception handling.
 * Dockerize it.
